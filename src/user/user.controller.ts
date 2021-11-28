@@ -4,6 +4,8 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { LocalAuthGuard } from "../auth/local-auth.guard";
 import { AuthService } from "../auth/auth.service";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { Serialize } from "../interceptors/serialize.interceptor";
+import { UserDto } from "./dtos/user.dto";
 
 @Controller('account')
 export class UserController {
@@ -33,6 +35,7 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Serialize(UserDto)
   @Get('/all')
   async allUser() {
     const user = await this.userService.allUser();
@@ -40,6 +43,7 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Serialize(UserDto)
   @Get('/:id')
   async findById(@Param('id') id: string) {
     const user = await this.userService.findById(id);
