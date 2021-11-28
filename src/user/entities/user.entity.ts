@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Board } from '../../board/entities/board.entity';
+import { Contact } from '../../contact/entities/contact.entity';
 
 @Entity()
 export class User {
@@ -26,4 +28,7 @@ export class User {
 
   @OneToMany((type) => Board, (board) => board.user)
   boards: Board[];
+
+  @OneToOne(() => Contact, (contact) => contact.user)
+  contact: Contact;
 }

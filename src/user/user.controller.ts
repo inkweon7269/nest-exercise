@@ -1,11 +1,20 @@
-import { Body, Controller, ForbiddenException, Get, Param, Post, Req, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  ForbiddenException,
+  Get,
+  Param,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dtos/create-user.dto';
-import { LocalAuthGuard } from "../auth/local-auth.guard";
-import { AuthService } from "../auth/auth.service";
-import { JwtAuthGuard } from "../auth/jwt-auth.guard";
-import { Serialize } from "../interceptors/serialize.interceptor";
-import { UserDto } from "./dtos/user.dto";
+import { LocalAuthGuard } from '../auth/local-auth.guard';
+import { AuthService } from '../auth/auth.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { Serialize } from '../interceptors/serialize.interceptor';
+import { UserDto } from './dtos/user.dto';
 
 @Controller('account')
 export class UserController {
