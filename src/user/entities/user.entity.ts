@@ -2,13 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Board } from '../../board/entities/board.entity';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   email: string;
@@ -21,4 +23,7 @@ export class User {
 
   @CreateDateColumn()
   createAt: Date;
+
+  @OneToMany((type) => Board, (board) => board.user)
+  boards: Board[];
 }
