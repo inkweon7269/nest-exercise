@@ -1,13 +1,14 @@
 import {
   Column,
   CreateDateColumn,
-  Entity,
+  Entity, JoinTable, ManyToMany,
   OneToMany,
   OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+  PrimaryGeneratedColumn
+} from "typeorm";
 import { Board } from '../../board/entities/board.entity';
 import { Contact } from '../../contact/entities/contact.entity';
+import { Club } from "../../club/entities/club.entity";
 
 @Entity()
 export class User {
@@ -31,4 +32,8 @@ export class User {
 
   @OneToOne(() => Contact, (contact) => contact.user, { eager: true })
   contact: Contact;
+
+  @ManyToMany(() => Club, (club) => club.attendees)
+  @JoinTable({ name: 'user_club' })
+  clubs: Club[];
 }
