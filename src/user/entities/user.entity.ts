@@ -29,6 +29,6 @@ export class User {
   @OneToMany((type) => Board, (board) => board.user)
   boards: Board[];
 
-  @OneToOne(() => Contact, (contact) => contact.user)
+  @OneToOne(() => Contact, (contact) => contact.user, { eager: true })
   contact: Contact;
 }
